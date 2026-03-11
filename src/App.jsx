@@ -200,13 +200,13 @@ function LoginPage({ onSuccess }) {
 
 // ─── Main App ─────────────────────────────────────────────────
 export default function App() {
-  const [authed, setAuthed] = useState(() => sessionStorage.getItem("v-auth") === "1");
+  const [authed, setAuthed] = useState(false);
   const [rows, setRows] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  const handleLogin = () => { sessionStorage.setItem("v-auth","1"); setAuthed(true); };
+  const handleLogin = () => { setAuthed(true); };
 
   useEffect(() => {
     if (!authed) return;
@@ -280,7 +280,7 @@ export default function App() {
           <div style={{ fontSize: "11px", color: "#a094c8", background: "white", border: "1.5px solid #e2dcf8", borderRadius: "20px", padding: "5px 14px", fontWeight: 600 }}>
             {new Date().toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
           </div>
-          <button onClick={() => { sessionStorage.removeItem("v-auth"); setAuthed(false); }} style={{ fontSize: "11px", color: "#c4b5fd", background: "white", border: "1.5px solid #e2dcf8", borderRadius: "20px", padding: "5px 14px", fontWeight: 600, cursor: "pointer" }}>
+          <button onClick={() => { setAuthed(false); }} style={{ fontSize: "11px", color: "#c4b5fd", background: "white", border: "1.5px solid #e2dcf8", borderRadius: "20px", padding: "5px 14px", fontWeight: 600, cursor: "pointer" }}>
             Lock 🔒
           </button>
         </div>
